@@ -1,28 +1,21 @@
-import json
 import requests
+import json
 
+url = "https://fakerestapi.azurewebsites.net/api/v1/Authors/"
+
+payload = json.dumps({
+  "id": "3344",
+  "idBook": "699",
+  "firstName": "Mateus704",
+  "lastName": "Valentim"
+})
 headers = {
-    'Content-type':'application/json',
-    'Accept':'*/*',
-    'Accept-Encoding':'gzip, deflate, br',
-    'Connection':'keep-alive'
+  'Content-Type': 'application/json'
 }
 
-#API URL
-url = "https://fakerestapi.azurewebsites.net/api/v1/Authors"
+response = requests.request("POST", url, headers=headers, data=payload)
 
-#Ler e escrever o Json file
-file = open('C:\\Users\\mateus.oliveira\\PycharmProjects\\FakeRestApi\\JsonData\\createUser.json', 'r')
-json_input = file.read()
-request_json = json.loads(json_input)
+assert response.status_code == 200
+print('STATUS CODE = ',response.status_code)
 
-#Requisicao POST
-response = requests.post(url, request_json)
-
-#assert response.status_code == 201
-
-#Fetch header from response
-print(response.headers)
-
-#Parse response to Json format
-response_json = json.loads(response.text)
+print(response.text)

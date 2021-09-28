@@ -2,7 +2,7 @@ import jsonpath
 import requests
 import json
 #API URL
-url = "https://fakerestapi.azurewebsites.net/api/v1/Authors"
+url = "https://fakerestapi.azurewebsites.net/api/v1/Authors/"
 
 #Enviar Requisição GET
 response  = requests.get(url)
